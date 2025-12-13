@@ -1,61 +1,129 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="iso-8859-1">
-<title>404 File Not Found</title>
-<link rel="icon" href="favicon.ico" type="image/x-icon" />
-</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>404</title>
+<style type="text/css">
+<!--
+body,td,th {
+	font-family: Calibri;
+	font-size: small;
+	color: #FFFFFF;
+}
+body {
+	background-color: #990000;
+}
+a:link {
+	color: #CCCCCC;
+}
+a:visited {
+	color: #CCCCCC;
+}
+a:hover {
+	color: #FFFF00;
+}
+a:active {
+	color: #CCCCCC;
+}
+.style5 {color: #FFFFFF}
+.style6 {
+	color: #000000;
+	font-weight: bold;
+	font-size: medium;
+}
+.style7 {font-size: small}
+.style8 {font-size: medium; color: #000000;}
+.style18 {
+	color: #CCCCCC;
+	font-style: italic;
+}
+.style19 {
+	color: #FF0000;
+	font-style: italic;
+}
+.style20 {
+	font-size: large;
+	font-weight: bold;
+}
+.style21 {
+	font-size: xx-large;
+	color: #FFFF00;
+	font-style: italic;
+}
+-->
+</style></head>
 
-<body bgcolor="#D4D0C8" text="#000000" link="#0000FF" vlink="#800080">
-
-<center>
-<br><br>
-
-<table width="580" cellpadding="8" cellspacing="0" border="2" bgcolor="#FFFFFF">
-<tr bgcolor="#B0B0B0">
-  <td align="center">
-    <font face="Times New Roman" size="4">
-      <b>404 - File Not Found</b>
-    </font>
-  </td>
-</tr>
-
-<tr>
-<td>
-<font face="Times New Roman" size="2">
-<pre>
-File Not Found
-
-The requested URL was not found on this server.
-The link you followed is either outdated or incorrect.
-
-Please check the URL and try again.
-
-If you believe this is a server error,
-please contact the webmaster.
-</pre>
-</font>
-</td>
-</tr>
-
-<tr bgcolor="#E0E0E0">
-<td align="center">
-<font face="Times New Roman" size="1">
-<hr width="80%">
-<blink><b>BSD HTTP Server</b></blink><br>
-Server at <a href="/"><b>ariproject.ns8.org</b></a> Port 80
-</font>
-</td>
-</tr>
+<body>
+<table width="100%" border="0">
+  <tr>
+    <td width="9%"><a href="/"><img src="head_logo.png" width="80" height="17" border="0" /></a></td>
+    <td width="91%" align="center" id="clock">$$</td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><hr />
+      <p class="style20"><span class="style21">404</span><br />
+        Something Wrong ! </p>
+    <p class="style20">&nbsp;</p>
+    <p class="style20">&nbsp;</p>
+    <p class="style20">&nbsp;</p>
+    <p class="style20">&nbsp;</p>
+    <p class="style20">&nbsp;</p>
+    <p class="style20"><a href="/">Back to Home</a> </p>
+    <p class="style20">&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td colspan="2"><table width="100%" border="0">
+      <tr>
+        <td align="center" bgcolor="#FFFFFF"><a href="http://www.freebsd.org/" target="_blank"><img src="img/powerani.gif" width="171" height="64" border="0" /></a></td>
+        </tr>
+      <tr>
+        <td align="center"><span class="style5">© 2011 - 2025 <a href="/">Ari Project</a>. All Rights Reserved.<br />
+              <span class="style18">FreeBSD HTTP Server 8.21 </span></span></td>
+        </tr>
+      <tr>
+        <td>&nbsp;</td>
+        </tr>
+    </table></td>
+  </tr>
 </table>
+<script>
+fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.cnnindonesia.com/rss")
+.then(res => res.json())
+.then(data => {
+    let html = "";
+    data.items.slice(0,6).forEach(item => {
+        html += `<li>
+            <a href="${item.link}" target="_blank">${item.title}</a><br>
+            <small>${item.pubDate}</small>
+        </li>`;
+    });
+    document.getElementById("rss").innerHTML = html;
+});
 
-<br>
+function updateClock(){
+    const now = new Date();
 
-<font face="Times New Roman" size="1" color="#333333">
-Copyright &copy; 2011 Ari Project
-</font>
+    const hari = now.toLocaleDateString('id-ID', { weekday: 'long' });
+    const tanggal = now.toLocaleDateString('id-ID', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric'
+    });
 
-</center>
+    const waktu = now.toLocaleTimeString('id-ID', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    });
 
+    document.getElementById("clock").innerHTML =
+        hari + ", " + tanggal + "<br>" + waktu;
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+</script>
 </body>
+
+
 </html>
